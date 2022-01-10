@@ -5,18 +5,17 @@
 using namespace std;
 
 
-vector <danie> menu;
-vector <danie> zamowienie;
+
 
 
 int main(int argc, char argv [])
 {
-   // ifstream baza("baza.txt");
+    vector <danie> menu;
     vector <string> napisy;
     wczytaj("baza.txt", napisy);
     wypisz(napisy);
-    
-    
+    separator();
+    wczytaj_do_menu("baza.txt", menu);
     
     
     
