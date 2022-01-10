@@ -27,26 +27,25 @@ void wczytaj_do_menu(const string& name, vector<danie>& w)
     string linia, id, nazwa, kategoria, cena, opis;
     stringstream ss;
     char znak;
-
+    
     if (baza)
     {
         do {
             baza.get(znak);
             if (baza)
             {
-                ss << znak;
-                ss >> id;
+                id.push_back(znak);
             }
         } while (znak != ';');
         cout << id;
-        int ile = baza.tellg();
-        baza.seekg(0, baza.beg + ile);
+        
+    
+       
         do {
             baza.get(znak);
             if (baza)
             {
-                ss << znak;
-                ss >> nazwa;
+                nazwa.push_back(znak);
             }
         } while (znak != ';');
         cout << nazwa;
