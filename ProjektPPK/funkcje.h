@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <iomanip>
 #include "struktury.h"
 using namespace std;
 

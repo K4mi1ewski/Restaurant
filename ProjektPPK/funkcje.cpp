@@ -1,7 +1,7 @@
 #include "funkcje.h"
 #include "struktury.h"
 
-
+using namespace std;
 void wczytaj(const string& name, vector<string>& w) {
     ifstream baza(name);
     string linia;
@@ -28,30 +28,58 @@ void wczytaj_do_menu(const string& name, vector<danie>& w)
     stringstream ss;
     char znak;
     
-    if (baza)
+    if (baza.is_open())
     {
-        do {
-            baza.get(znak);
-            if (baza)
-            {
-                id.push_back(znak);
-            }
-        } while (znak != ';');
-        cout << id;
-        
-    
-       
-        do {
-            baza.get(znak);
-            if (baza)
-            {
-                nazwa.push_back(znak);
-            }
-        } while (znak != ';');
-        cout << nazwa;
-    
-    
-    
+        while (!baza.eof())
+        {
+            string id = "", nazwa = "", kategoria = "", cena = "", opis = "";
+            do {
+                baza.get(znak);
+                if (baza && znak != ';' )
+                {   
+                    
+                    id.push_back(znak);
+                }
+            } while (znak != ';');
+            cout <<  id << " ";
+
+            do {
+                baza.get(znak);
+                if (baza && znak != ';' )
+                {
+                    nazwa.push_back(znak);
+                }
+            } while (znak != ';');
+            cout  << nazwa << " ";
+
+            do {
+                baza.get(znak);
+                if (baza && znak != ';')
+                {
+                    kategoria.push_back(znak);
+                }
+            } while (znak != ';');
+            cout   << kategoria << " ";
+
+            do {
+                baza.get(znak);
+                if (baza && znak != ';')
+                {
+                    cena.push_back(znak);
+                }
+            } while (znak != ';');
+            cout  << cena << " ";
+
+            do {
+                baza.get(znak);
+                if (baza && znak != ';')
+                {
+                    opis.push_back(znak);
+                }
+            } while (znak != ';');
+            cout << opis << " ";
+        }
+
     }
    
     
