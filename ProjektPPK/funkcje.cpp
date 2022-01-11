@@ -20,83 +20,94 @@ void wypisz(vector <string>& w)
         cout << el << endl;
 }
 
-void wczytaj_do_menu(const string& name, vector<danie>& w)
+void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kategorie)
 {
-    vector <string> linie;
+
     ifstream baza(name);
-    string linia, id, nazwa, kategoria, cena, opis;
+    string linia;
     stringstream ss;
     char znak;
-    
+
     if (baza.is_open())
     {
-        while (!baza.eof())
-        {
-            string id = "", nazwa = "", kategoria = "", cena = "", opis = "";
-            do {
-                baza.get(znak);
-                if (baza && znak != ';' )
-                {   
-                    
-                    id.push_back(znak);
-                }
-            } while (znak != ';');
-            cout <<  id << " ";
+          while (getline(baza, linia))
+          {
+                string  nazwa, kategoria, opis;
+                int id, cena;
+                
+                
+                ss << linia;
+                ss >> id;
+                cout << id << " ";
+                do {
+                    ss.get(znak);
+                    if (baza && znak != ';' && znak != 32)
+                        nazwa.push_back(znak);
 
-            do {
-                baza.get(znak);
-                if (baza && znak != ';' )
+                } while (znak != ';');
+                cout << nazwa << " ";
+                do {
+                    ss.get(znak);
+                    if (baza && znak != ';' && znak != 32)
+                        kategoria.push_back(znak);
+
+
+                } while (znak != ';');
+                cout << kategoria << " ";
+                ss >> cena;
+                cout << cena;
+                do {
+                    ss.get(znak);
+                    if (baza && znak != ';')
+                        opis.push_back(znak);
+
+                } while (!ss.fail());
+                cout << opis << " ";
+                w.push_back({ id, nazwa, kategoria, cena, opis });
+
+                bool nowa_kategoria = true;
+                for (auto el : kategorie)
                 {
-                    nazwa.push_back(znak);
+                    if (el == kategoria)
+                    {
+                        nowa_kategoria = false;
+                        break;
+                    }
                 }
-            } while (znak != ';');
-            cout  << nazwa << " ";
+                if (nowa_kategoria)
+                    kategorie.push_back(kategoria);
+            
+            
+                id = 0; cena = 0;
+                nazwa = "", kategoria = "", opis = "";
+          }
 
-            do {
-                baza.get(znak);
-                if (baza && znak != ';')
-                {
-                    kategoria.push_back(znak);
-                }
-            } while (znak != ';');
-            cout   << kategoria << " ";
+        
 
-            do {
-                baza.get(znak);
-                if (baza && znak != ';')
-                {
-                    cena.push_back(znak);
-                }
-            } while (znak != ';');
-            cout  << cena << " ";
 
-            do {
-                baza.get(znak);
-                if (baza && znak != ';')
-                {
-                    opis.push_back(znak);
-                }
-            } while (znak != ';');
-            cout << opis << " ";
-        }
 
+
+
+
+
+        baza.close();
     }
-   
-    
-    
-    
-    
-    
-    
-    baza.close();
 }
-
 void separator()
 {
     cout << endl << " -------------------------------------------------------------------------- " << endl;
 }
 
+void wypisz_menu(vector <danie>& w)
+{
+    for (auto el : w)
+    {
+        cout << setw (4) << el.id << el.nazwa << el.kategoria << el.cena << el.opis << endl;
+    }
 
+
+
+}
 
 
 

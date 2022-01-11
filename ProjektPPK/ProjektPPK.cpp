@@ -8,14 +8,17 @@ using namespace std;
 
 
 
-int main(int argc, char argv [])
+int main(int argc, char *argv [])
 {
+    vector <string> kategorie;
     vector <danie> menu;
     vector <string> napisy;
     wczytaj("baza.txt", napisy);
     wypisz(napisy);
     separator();
-    wczytaj_do_menu("baza.txt", menu);
+    wczytaj_do_menu("baza.txt", menu, kategorie);
+    separator();
+    wypisz_menu(menu);
     
     
     
