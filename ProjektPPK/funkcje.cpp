@@ -30,12 +30,10 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
 
     if (baza.is_open())
     {
+        string  nazwa, kategoria, opis;
+        int id; double cena;
           while (getline(baza, linia))
           {
-                string  nazwa, kategoria, opis;
-                int id, cena;
-                
-                
                 ss << linia;
                 string id_, cena_;
                 stringstream laduj;
@@ -54,7 +52,7 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
                 
                 do {
                     ss.get(znak);
-                    if (baza && znak != ';' && znak != 32)
+                    if (baza && znak != ';' )
                         nazwa.push_back(znak);
                 
                 } while (znak != ';');
@@ -104,7 +102,7 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
                     kategorie.push_back(kategoria);
             
             
-                
+                ss.clear(); id = 0; cena = 0; opis = "", kategoria = "", nazwa = "";
           }
 
         
@@ -131,7 +129,7 @@ void wypisz_menu(vector <danie>& w)
 {
     for (auto el : w)
     {
-        cout << setw (4) << el.id << el.nazwa << el.kategoria << el.cena << el.opis << endl;
+        cout << setw (4)  << el.id << setw (8 ) << el.nazwa << setw (16) << el.kategoria << setw (4) << el.cena  <<  setw (4) << el.opis << endl;
     }
 
 

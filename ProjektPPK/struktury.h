@@ -7,6 +7,6 @@ struct danie {
     int id;
     string nazwa;
     string kategoria;
-    int cena;
+    double cena;
     string opis;
 };
