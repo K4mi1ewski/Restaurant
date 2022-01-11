@@ -37,31 +37,57 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
                 
                 
                 ss << linia;
-                ss >> id;
+                string id_, cena_;
+                stringstream laduj;
+                do {
+                    
+                    ss.get(znak);
+                    if (baza && znak != ';' && znak != 32)
+                    {  
+                        id_.push_back(znak);
+                    }
+                  
+                } while (znak != ';');
+                laduj << id_;
+                laduj >> id;
                 cout << id << " ";
+                
                 do {
                     ss.get(znak);
                     if (baza && znak != ';' && znak != 32)
                         nazwa.push_back(znak);
-
+                
                 } while (znak != ';');
                 cout << nazwa << " ";
                 do {
                     ss.get(znak);
                     if (baza && znak != ';' && znak != 32)
                         kategoria.push_back(znak);
+                } while (znak != ';');
+                
+                cout << kategoria << " ";
+               
+                do {
 
+                    ss.get(znak);
+                    if (baza && znak != ';' && znak != 32)
+                    {
+                        cena_.push_back(znak);
+                    }
 
                 } while (znak != ';');
-                cout << kategoria << " ";
-                ss >> cena;
-                cout << cena;
-                do {
+                laduj.clear();
+                laduj << cena_;
+                laduj >> cena;
+
+                cout << cena << " ";
+                getline(ss, opis);
+               /*do {
                     ss.get(znak);
                     if (baza && znak != ';')
                         opis.push_back(znak);
 
-                } while (!ss.fail());
+                } while (!ss.eof());*/
                 cout << opis << " ";
                 w.push_back({ id, nazwa, kategoria, cena, opis });
 
@@ -78,8 +104,7 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
                     kategorie.push_back(kategoria);
             
             
-                id = 0; cena = 0;
-                nazwa = "", kategoria = "", opis = "";
+                
           }
 
         
@@ -90,9 +115,13 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
 
 
 
-        baza.close();
+        
     }
+    baza.close();
 }
+
+
+
 void separator()
 {
     cout << endl << " -------------------------------------------------------------------------- " << endl;

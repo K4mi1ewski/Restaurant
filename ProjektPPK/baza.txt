@@ -10,7 +10,7 @@
 10; Tosty;                  Sniadania; 8,00;     Dwa tosty z serem i szynka
 11; Makaron z krewetkami;   Obiady;    24,00;    Recznie robiony makaron z krewetkami i swiezymi ziolami
 12; Lasagne;                Obiady;    27,00;    Lasagne na goraco z rukola
-13; Krem z dyni;            Obiady;    22,00;    Krem z dyni podany z serem kozim, borowką i orzechami wloskimi
+13; Krem z dyni;            Obiady;    22,00;    Krem z dyni podany z serem kozim, borowka i orzechami wloskimi
 14; Ryz z sosem;            Obiady;    26,00;    Ryz z sosem slodko kwasnym i kurczakiem
 15; Schabowy z ziemniakami; Obiady;    28,00;    Kotlet schabowy z ziemniakami i surowka
 16; Nalesniki;              Desery;    12,00;    Nalesniki z syropem klonowym i serem bialym
