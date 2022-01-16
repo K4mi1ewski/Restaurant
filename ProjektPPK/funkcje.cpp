@@ -29,45 +29,48 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
     string  nazwa, kategoria, opis, id_, cena_;
     int id;
     double cena;
-    while (!baza.eof())
-    {
-        getline(baza, linia, ';');
-        id = stoi(linia);
-       
-        ss.clear();
-        getline(baza, nazwa, ';');
-        
-        getline(baza, kategoria, ';');
-        
-        getline(baza, linia, ';');
-        ss << linia;
-        while (ss >> znak)
+    if (baza.good()) {
+        while (!baza.eof())
         {
-            if (isdigit(znak))
-                cena_ += znak;
-            else if (znak == ',')
-                cena_ += '.';
-        };
-        cena = stod(cena_);
-        getline(baza, opis);
-      
-        w.push_back({ id, nazwa, kategoria, cena, opis });
+            getline(baza, linia, ';');
+            id = stoi(linia);
 
-                bool nowa_kategoria = true;
-                for (auto el : kategorie)
+            getline(baza, nazwa, ';');
+
+            getline(baza, kategoria, ';');
+
+            getline(baza, linia, ';');
+            ss << linia;
+            while (ss >> znak)
+            {
+                if (isdigit(znak))
+                    cena_ += znak;
+                else if (znak == ',')
+                    cena_ += '.';
+            };
+            cena = stod(cena_);
+            getline(baza, opis);
+
+            w.push_back({ id, nazwa, kategoria, cena, opis });
+
+            bool nowa_kategoria = true;
+            for (auto el : kategorie)
+            {
+                if (el == kategoria)
                 {
-                    if (el == kategoria)
-                    {
-                        nowa_kategoria = false;
-                        break;
-                    }
+                    nowa_kategoria = false;
+                    break;
                 }
-                if (nowa_kategoria)
-                    kategorie.push_back(kategoria);
-            
-                cena_.clear(); id_.clear();
+            }
+            if (nowa_kategoria)
+                kategorie.push_back(kategoria);
+
+            cena_.clear(); id_.clear();
+        }
+
     }
-    baza.close();
+   
+         baza.close();
 }
 
 
