@@ -31,12 +31,9 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
     double cena;
     while (!baza.eof())
     {
-      
-         
         getline(baza, linia, ';');
         id = stoi(linia);
        
-        
         ss.clear();
         getline(baza, nazwa, ';');
         
@@ -86,10 +83,40 @@ void wypisz_menu(vector <danie>& w)
     {
         cout << setw (4)  << el.id << setw (8 ) << el.nazwa << setw (16) << el.kategoria << setw (4) << el.cena  <<  setw (4) << el.opis << endl;
     }
-
-
-
 }
 
+void wyswietl_menu(vector <string> &kat)
+{   for (size_t i = 0; i < kat.size(); i++)
+{
+    cout << i + 1 << setw(5) << kat[i] << endl;
+}
+cout << endl << "0"; cout << "  " << "Zloz zamowienie" << endl;
+cout << endl << "R" << "  " << "Wyczysc zamowienie" << endl;
+}
 
-
+void podsumuj (vector <danie> zamowienie, const int& nr_stolika)
+{
+    string nazwa_pliku = "S";
+    stringstream ss; ss << nr_stolika; 
+    char znak; 
+    while (ss >> znak)
+        nazwa_pliku.push_back(znak);
+    
+    nazwa_pliku.push_back('.');   nazwa_pliku.push_back('t');  nazwa_pliku.push_back('x');  nazwa_pliku.push_back('t');
+    double suma = 0;
+    for (auto el : zamowienie)
+        suma += el.cena;
+    
+    ofstream plik (nazwa_pliku);
+    if (plik.is_open()) {
+        plik << "Stolik nr " << nr_stolika << endl;
+        for (auto el : zamowienie)
+        {
+            plik << el.nazwa << "       " << setprecision(2) << showpoint << el.cena << endl;
+        }
+        plik << "===============" << endl;
+        plik << setprecision(2) << showpoint << suma;
+    }
+    plik.close();
+    
+}

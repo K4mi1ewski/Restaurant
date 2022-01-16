@@ -17,3 +17,5 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string> & kat
 void wypisz(vector<string>& w);
 void separator();
 void wypisz_menu(vector <danie>& w);
+void wyswietl_menu(vector <string>& kat);
+void podsumuj (vector <danie> zamowienie, const int& nr_stolika);
