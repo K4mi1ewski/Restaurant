@@ -1,20 +1,20 @@
-1;  Woda;                   Napoje;    5,00;     Woda mineralna w szklance 300ml
-2;  Sok pomaranczowy;       Napoje;    8,00;     Swiezy sok pomaranczowy w szklance 300ml
-3;  Sok jablkowy;           Napoje;    8,00;     Swiezy sok jablkowy w szklance 300ml 
-4;  Coca-Cola;              Napoje;    9,00;     Coca-cola z lodem w szklance 300ml
-5;  Lemoniada;              Napoje;    6,00;     Orzezwiajaca lemoniada z lodem w szklance 300ml
-6;  Grzanki;                Sniadania; 12,00;    4 grzanki podawane na cieplo z pasta z awokado, pomidorami i mozzarella
-7;  Jajecznica z kurkami;   Sniadania; 9,00;     Jajecznica z kurkami z dodatkiem rukoli
-8;  Jajka sadzone;          Sniadania; 11,00;    Jajka sadzone na swiezym boczku z warzywami
-9;  Owsianka z owocami;     Sniadania; 12,00;    Owsianka ze swiezymi owocami lesnymi na mleku
-10; Tosty;                  Sniadania; 8,00;     Dwa tosty z serem i szynka
-11; Makaron z krewetkami;   Obiady;    24,00;    Recznie robiony makaron z krewetkami i swiezymi ziolami
-12; Lasagne;                Obiady;    27,00;    Lasagne na goraco z rukola
-13; Krem z dyni;            Obiady;    22,00;    Krem z dyni podany z serem kozim, borowka i orzechami wloskimi
-14; Ryz z sosem;            Obiady;    26,00;    Ryz z sosem slodko kwasnym i kurczakiem
-15; Schabowy z ziemniakami; Obiady;    28,00;    Kotlet schabowy z ziemniakami i surowka
-16; Nalesniki;              Desery;    12,00;    Nalesniki z syropem klonowym i serem bialym
-17; Puchar lodowy;          Desery;    16,00;    Puchar lodowy z trzech galek lodow z bita smietana
-18; Sernik;                 Desery;    12,00;    Sernik z czekolada i bakaliami
-19; Szarlotka;              Desery;    16,00;    Szarlotka na goraco z galka lodow waniliowych
-20; Tort Pavlova;           Desery;    15,00;    Beza z owocami
+1; Woda; Napoje; 5,00; Woda mineralna w szklance 300ml
+2; Sok pomaranczowy; Napoje; 8,00; Swiezy sok pomaranczowy w szklance 300ml
+3; Sok jablkowy; Napoje; 8,00; Swiezy sok jablkowy w szklance 300ml 
+4; Coca-Cola; Napoje; 9,00; Coca-cola z lodem w szklance 300ml
+5; Lemoniada; Napoje; 6,00; Orzezwiajaca lemoniada z lodem w szklance 300ml
+6; Grzanki; Sniadania; 12,00; 4 grzanki podawane na cieplo z pasta z awokado, pomidorami i mozzarella
+7; Jajecznica z kurkami; Sniadania; 9,00; Jajecznica z kurkami z dodatkiem rukoli
+8; Jajka sadzone; Sniadania; 11,00; Jajka sadzone na swiezym boczku z warzywami
+9; Owsianka z owocami; Sniadania; 12,00; Owsianka ze swiezymi owocami lesnymi na mleku
+10; Tosty; Sniadania; 8,00; Dwa tosty z serem i szynka
+11; Makaron z krewetkami; Obiady; 24,00; Recznie robiony makaron z krewetkami i swiezymi ziolami
+12; Lasagne; Obiady; 27,00; Lasagne na goraco z rukola
+13; Krem z dyni; Obiady; 22,00; Krem z dyni podany z serem kozim, borowka i orzechami wloskimi
+14; Ryz z sosem; Obiady; 26,00; Ryz z sosem slodko kwasnym i kurczakiem
+15; Schabowy z ziemniakami; Obiady; 28,00; Kotlet schabowy z ziemniakami i surowka
+16; Nalesniki; Desery; 12,00; Nalesniki z syropem klonowym i serem bialym
+17; Puchar lodowy; Desery; 16,00; Puchar lodowy z trzech galek lodow z bita smietana
+18; Sernik; Desery; 12,00; Sernik z czekolada i bakaliami
+19; Szarlotka; Desery; 16,00; Szarlotka na goraco z galka lodow waniliowych
+20; Tort Pavlova; Desery; 15,00; Beza z owocami

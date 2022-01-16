@@ -19,6 +19,8 @@ int main(int argc, char *argv [])
     wczytaj_do_menu("baza.txt", menu, kategorie);
     separator();
     wypisz_menu(menu);
+    separator();
+    wypisz(kategorie);
     
     
     

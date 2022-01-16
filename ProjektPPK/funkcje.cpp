@@ -22,74 +22,39 @@ void wypisz(vector <string>& w)
 
 void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kategorie)
 {
-
     ifstream baza(name);
     string linia;
     stringstream ss;
     char znak;
-
-    if (baza.is_open())
+    string  nazwa, kategoria, opis, id_, cena_;
+    int id;
+    double cena;
+    while (!baza.eof())
     {
-          while (getline(baza, linia))
-          {
-                string  nazwa, kategoria, opis;
-                int id, cena;
-                
-                
-                ss << linia;
-                string id_, cena_;
-                stringstream laduj;
-                do {
-                    
-                    ss.get(znak);
-                    if (baza && znak != ';' && znak != 32)
-                    {  
-                        id_.push_back(znak);
-                    }
-                  
-                } while (znak != ';');
-                laduj << id_;
-                laduj >> id;
-                cout << id << " ";
-                
-                do {
-                    ss.get(znak);
-                    if (baza && znak != ';' && znak != 32)
-                        nazwa.push_back(znak);
-                
-                } while (znak != ';');
-                cout << nazwa << " ";
-                do {
-                    ss.get(znak);
-                    if (baza && znak != ';' && znak != 32)
-                        kategoria.push_back(znak);
-                } while (znak != ';');
-                
-                cout << kategoria << " ";
-               
-                do {
-
-                    ss.get(znak);
-                    if (baza && znak != ';' && znak != 32)
-                    {
-                        cena_.push_back(znak);
-                    }
-
-                } while (znak != ';');
-                laduj.clear();
-                laduj << cena_;
-                laduj >> cena;
-
-                cout << cena << " ";
-                getline(ss, opis);
-               /*do {
-                    ss.get(znak);
-                    if (baza && znak != ';')
-                        opis.push_back(znak);
-
-                } while (!ss.eof());*/
-                cout << opis << " ";
-                w.push_back({ id, nazwa, kategoria, cena, opis });
+      
+         
+        getline(baza, linia, ';');
+        id = stoi(linia);
+       
+        
+        ss.clear();
+        getline(baza, nazwa, ';');
+        
+        getline(baza, kategoria, ';');
+        
+        getline(baza, linia, ';');
+        ss << linia;
+        while (ss >> znak)
+        {
+            if (isdigit(znak))
+                cena_ += znak;
+            else if (znak == ',')
+                cena_ += '.';
+        };
+        cena = stod(cena_);
+        getline(baza, opis);
+      
+        w.push_back({ id, nazwa, kategoria, cena, opis });
 
                 bool nowa_kategoria = true;
                 for (auto el : kategorie)
@@ -103,19 +68,7 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
                 if (nowa_kategoria)
                     kategorie.push_back(kategoria);
             
-            
-                
-          }
-
-        
-
-
-
-
-
-
-
-        
+                cena_.clear(); id_.clear();
     }
     baza.close();
 }
