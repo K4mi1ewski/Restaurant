@@ -84,7 +84,7 @@ void wypisz_menu(vector <danie>& w)
 {
     for (auto el : w)
     {
-        cout << setw (4) << el.id << el.nazwa << el.kategoria << el.cena << el.opis << endl;
+        cout << setw (4)  << el.id << setw (8 ) << el.nazwa << setw (16) << el.kategoria << setw (4) << el.cena  <<  setw (4) << el.opis << endl;
     }
 
 
