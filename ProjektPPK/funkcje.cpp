@@ -40,15 +40,15 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
             getline(baza, kategoria, ';');
 
             getline(baza, linia, ';');
-            ss << linia;
-            while (ss >> znak)
-            {
-                if (isdigit(znak))
-                    cena_ += znak;
-                else if (znak == ',')
-                    cena_ += '.';
-            };
-            cena = stod(cena_);
+          //  ss << linia;
+          //  while (ss >> znak)
+          // {
+          //      if (isdigit(znak))
+          //          cena_ += znak;
+          //      else if (znak == ',')
+          //          cena_ += '.';
+          //  };
+            cena = stod(linia);
             getline(baza, opis);
 
             w.push_back({ id, nazwa, kategoria, cena, opis });

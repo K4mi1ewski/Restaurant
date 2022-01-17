@@ -11,30 +11,21 @@ using namespace std;
 int main(int argc, char* argv [])
 {
    
-    if (argc != 4 || argv[1] != "-s")
+   /* if (argc != 4 || argv[1] != "-s")
     {
         cerr << "POPRAWNE WYWOLANIE: " << argv[0] << "-s (numer stolika) (nazwa pliku tekstowego) ";
         return 0;
     }
-    
-    int numer_stolika = stoi (argv[2]);
+    */
+    int numer_stolika = 15;
     string nazwa_pliku = argv[3];
     vector <string> kategorie;
     vector <danie> menu;
-    //vector <string> napisy;
     vector <danie> zamowienie;
-    wczytaj_do_menu(nazwa_pliku, menu, kategorie);
+    wczytaj_do_menu("baza.txt", menu, kategorie);
     separator();
     
-   // wczytaj(nazwa_pliku, napisy);
-   // wypisz(napisy);
-   // separator();
-   // wypisz_menu(menu);
-   // separator();
-   // wypisz(kategorie);
-    //separator();
-    //wyswietl_menu(kategorie);
-    //separator();
+   
     char wybor_kat;
     int* N = new int;
     int wybor_dania;
@@ -55,7 +46,7 @@ int main(int argc, char* argv [])
                 for (auto el : menu)
                 {
                     if (el.kategoria == kategorie[(*N) - 1])
-                        cout << el.id << " " << setw(6) << el.nazwa << " " << el.kategoria << " " << setprecision(2) << showpoint << el.cena << "; " << el.opis << endl;
+                        cout << setw (1) << el.id << " "  << el.nazwa << " "  << setprecision(3) <<  showpoint  << setw (5) << el.cena << "; " << el.opis << endl;
                 }
                 cout << endl << "0  Powrot";
                 cin >> wybor_dania;
