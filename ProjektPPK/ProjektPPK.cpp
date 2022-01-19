@@ -44,7 +44,8 @@ int main(int argc, char* argv [])
         {
            break;
         }
-        size_t T = N + 1;
+        int N_ = N + 1;
+        size_t T = N_;
         if (T <= kategorie.size())
         {
             do

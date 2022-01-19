@@ -86,13 +86,39 @@ void podsumuj (vector <danie> zamowienie, const int& nr_stolika)
     ofstream plik (nazwa_pliku);
     if (plik.is_open()) {
         plik << "Stolik nr " << nr_stolika << endl << endl;
+        size_t maxi_nazwa = 0; int dokladnosc = 2;
+        for (auto element : zamowienie)
+        {
+            if (element.nazwa.size() > maxi_nazwa)
+                maxi_nazwa = element.nazwa.size();
+        }
+        
         for (auto el : zamowienie)
         {
             size_t rozmiar_nazwy = el.nazwa.size();
-            plik << el.nazwa  << setprecision(2) << showpoint << setw (25 - rozmiar_nazwy) << el.cena << endl;
+            int przesun = maxi_nazwa - rozmiar_nazwy + 3;
+            
+            ss << el.cena;
+            while (ss >> znak)
+            {
+                if (znak == '.')
+                    break;
+                else
+                    dokladnosc++;
+            }
+            plik << el.nazwa  << setprecision(dokladnosc) << showpoint << setw (przesun) << el.cena << endl;
         }
         plik << "=========================" << endl;
-        plik << setprecision(4) << showpoint << suma;
+        dokladnosc = 2; ss << suma;
+        while (ss >> znak)
+        {
+            if (znak == '.')
+                break;
+            else
+                dokladnosc++;
+        }
+        
+        plik << setprecision(dokladnosc) << showpoint << suma;
     }
     plik.close();
     

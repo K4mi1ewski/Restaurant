@@ -20,7 +20,7 @@ using namespace std;
 /** Funkcja odczytuje dane dotyczace potraw z pliku i zapisuje je do wektorow.
 @param name Nazwa pliku ktory funkcja otwiera i z ktorego czyta dane
 @param w Wektor struktur do ktorego funkcja zapisuje dane
-@param kategorie Wektor stringow do ktorego funkcja zapisuje kategorie potraw */
+@param kategorie Wektor nazw (stringow) do ktorego funkcja zapisuje kategorie potraw */
 void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string> & kategorie);
 
 
