@@ -3,15 +3,9 @@
 #include "funkcje.h"
 #include "struktury.h"
 using namespace std;
-
-
-
-
-
 int main(int argc, char* argv [])
 {
-    string parametr = argv[1];
-    if (argc != 4 || parametr != "-s")
+    if (argc != 4 || strcmp (argv[1], "-s")!= 0 || czy_liczba(argv[2]) == false)
     {
         cerr << "POPRAWNE WYWOLANIE: " << argv[0] << " -s (numer stolika) (nazwa pliku tekstowego) ";
         return 0;
@@ -20,22 +14,19 @@ int main(int argc, char* argv [])
     string nazwa_pliku = argv[3];
 
     ifstream plik (nazwa_pliku);
-    if (plik.bad())
+    if (!plik)
     {
         cerr << "Niepoprawny plik!!!" << endl;
         return 0;
     }
-   
+    plik.close();
     vector <string> kategorie;
     vector <danie> menu;
     vector <danie> zamowienie;
     wczytaj_do_menu(nazwa_pliku, menu, kategorie);
- 
-    
-   
     char wybor_kat;
     int N;
-    int wybor_dania;
+    string wybor_dania;
     do {
         wyswietl_menu(kategorie);
         cin >> wybor_kat;
@@ -57,8 +48,8 @@ int main(int argc, char* argv [])
                 {  
                     if (element.kategoria == kategorie[N])
                     {
-                        if (element.nazwa.size() > maxi_rozmiar_nazwy)
-                            maxi_rozmiar_nazwy = element.nazwa.size();
+                        if (strlen (element.nazwa.c_str()) > maxi_rozmiar_nazwy)
+                            maxi_rozmiar_nazwy = strlen (element.nazwa.c_str());
                     }
                 }
 
@@ -66,38 +57,37 @@ int main(int argc, char* argv [])
                 {    
                     if (el.kategoria == kategorie[N])
                     {
-                        stringstream strumien; char znak; int dokladnosc = 2;
-                        size_t rozmiar_nazwy = el.nazwa.size();
-                          int przesuniecie = maxi_rozmiar_nazwy - rozmiar_nazwy  + 7;
-                          strumien << el.cena;
-                          while (strumien >> znak)
-                          {
-                              if (znak == '.')
-                                  break;
-                              else
-                                  dokladnosc++;
-                          }
-
-                        cout << setw(2) << el.id << " " << el.nazwa << " " << setprecision(dokladnosc) << showpoint << setw (przesuniecie) << el.cena << "; " << el.opis << endl;
+                        const int dwa = 2; const int odstep = 7;
+                        size_t rozmiar_nazwy = strlen (el.nazwa.c_str());
+                        size_t przesuniecie = maxi_rozmiar_nazwy - rozmiar_nazwy  + odstep;
+                        cout << setw(dwa) << el.id << " " << el.nazwa << " " << setprecision(dwa) << showpoint << fixed << setw (przesuniecie) << el.cena << "; " << el.opis << endl;
                     }
                 }
-                cout << endl << "0  Powrot" << endl;
+                cout << endl <<  "0  Powrot" << endl;
                 cin >> wybor_dania;
-                
-                for (auto el : menu)
+                bool sprawdz = czy_liczba(wybor_dania.c_str());
+                if (sprawdz == true)
                 {
-                    if (el.id == wybor_dania && el.kategoria == kategorie[N])
+                    int numer_dania = stoi(wybor_dania);
+                    for (auto el : menu)
                     {
-                        zamowienie.push_back(el);
-                    }
-                    else if (el.id == wybor_dania && el.kategoria != kategorie[N])
-                    {
-                        cerr << "Tego dania nie ma w tej kategorii!" << endl;
-                        Sleep(5000);
+                        if (el.id == numer_dania && el.kategoria == kategorie[N])
+                        {
+                            zamowienie.push_back(el);
+                        }
+                        else if (el.id == numer_dania && el.kategoria != kategorie[N])
+                        {
+                            cerr << "Tego dania nie ma w tej kategorii!" << endl;
+                            cin.clear(); getchar(); getchar();
+                        }
                     }
                 }
-
-            } while (wybor_dania != 0);
+                else
+                {
+                    cerr << "Prosze wprowadzic liczbe!" << endl;
+                    cin.clear(); getchar(); getchar();
+                }
+            } while (wybor_dania != "0");
 
         }
         else if (wybor_kat == 'R' || wybor_kat == 'r')
@@ -107,7 +97,7 @@ int main(int argc, char* argv [])
         else
         {
             cerr << "NIEPOPRAWNY ZNAK! WYBIERZ NUMER OD 1 DO " << kategorie.size() << " LUB 0 ABY ZAKONCZYC; MOZESZ WYCZYSCIC ZAMOWIENIE WPROWADZAJAC 'R' ";
-            Sleep(5000);
+            cin.clear(); getchar(); getchar();
         }
         system("cls");
     } while (wybor_kat != '0');

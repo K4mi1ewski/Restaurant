@@ -1,5 +1,4 @@
 /** @file */
-#pragma once
 
 #ifndef FUNKCJE_H
 #define FUNKCJE_H
@@ -11,6 +10,7 @@
 #include <string>
 #include <iomanip>
 #include <windows.h>
+#include <cstring>
 #include "struktury.h"
 using namespace std;
 
@@ -36,4 +36,10 @@ void wyswietl_menu(vector <string>& kat);
 */
 void podsumuj (vector <danie> zamowienie, const int& nr_stolika);
 
+/** Funkcja sprawdza, czy dany ciag znakow jest liczba.
+@param napis Ciag znakow do sprawdzenia
+@return true Jezeli w ciagu znakow wystepowaly jedynie liczby
+@return false Jezeli w ciagu znakow pojawil sie znak niebedacy liczba
+*/
+bool czy_liczba(const char* napis);
 #endif

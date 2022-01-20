@@ -5,15 +5,10 @@
 
 using namespace std;
 
-
-
-
 void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kategorie)
 {
     ifstream baza(name);
-    //string linia;
     stringstream ss;
-    //char znak;
     string  nazwa, kategoria, opis, id_, cena_;
     int id;
     double cena;
@@ -22,25 +17,13 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
         {
             getline(baza, id_, ';');
             id = stoi(id_);
-
             getline(baza, nazwa, ';');
-
             getline(baza, kategoria, ';');
-
             getline(baza, cena_, ';');
-          //  ss << linia;
-          //  while (ss >> znak)
-          // {
-          //      if (isdigit(znak))
-          //          cena_ += znak;
-          //      else if (znak == ',')
-          //          cena_ += '.';
-          //  };
             cena = stod(cena_);
             getline(baza, opis);
 
             w.push_back({ id, nazwa, kategoria, cena, opis });
-
             bool nowa_kategoria = true;
             for (auto el : kategorie)
             {
@@ -52,11 +35,8 @@ void wczytaj_do_menu(const string& name, vector<danie>& w, vector <string>& kate
             }
             if (nowa_kategoria)
                 kategorie.push_back(kategoria);
-   
         }
-
     }
-   
          baza.close();
 }
 
@@ -72,6 +52,8 @@ cout << endl << "R" << "  " << "Wyczysc zamowienie" << endl;
 
 void podsumuj (vector <danie> zamowienie, const int& nr_stolika)
 {
+    const int dwa = 2; //program ma wyswietlac dwie liczby po kropce w przypadku liczb zmiennoprzecinkowych
+    const int odstep = 6; // tyle ma wynosic odstep miedzy najdluzsza nazwa produktu a cena
     string nazwa_pliku = "S";
     stringstream ss; ss << nr_stolika; 
     char znak; 
@@ -86,40 +68,38 @@ void podsumuj (vector <danie> zamowienie, const int& nr_stolika)
     ofstream plik (nazwa_pliku);
     if (plik.is_open()) {
         plik << "Stolik nr " << nr_stolika << endl << endl;
-        size_t maxi_nazwa = 0; int dokladnosc = 2;
+        size_t maxi_nazwa = 0; 
         for (auto element : zamowienie)
         {
-            if (element.nazwa.size() > maxi_nazwa)
-                maxi_nazwa = element.nazwa.size();
+            if (strlen(element.nazwa.c_str()) > maxi_nazwa)
+                maxi_nazwa = strlen(element.nazwa.c_str());
         }
         
         for (auto el : zamowienie)
         {
-            size_t rozmiar_nazwy = el.nazwa.size();
-            int przesun = maxi_nazwa - rozmiar_nazwy + 3;
-            
-            ss << el.cena;
-            while (ss >> znak)
-            {
-                if (znak == '.')
-                    break;
-                else
-                    dokladnosc++;
-            }
-            plik << el.nazwa  << setprecision(dokladnosc) << showpoint << setw (przesun) << el.cena << endl;
-        }
-        plik << "=========================" << endl;
-        dokladnosc = 2; ss << suma;
-        while (ss >> znak)
-        {
-            if (znak == '.')
-                break;
-            else
-                dokladnosc++;
+            size_t dlugosc_nazwy = strlen (el.nazwa.c_str());
+            size_t przesun = maxi_nazwa - dlugosc_nazwy + odstep;
+            plik << el.nazwa  << " " << setprecision(dwa) << fixed << showpoint << setw(przesun) << el.cena << endl;
         }
         
-        plik << setprecision(dokladnosc) << showpoint << suma;
+        plik << "==================================" << endl;
+        
+        plik << setprecision(dwa) << fixed << showpoint << suma;
     }
     plik.close();
-    
+   }
+
+bool czy_liczba(const char* napis)
+{
+    char znak; stringstream strumien;
+    strumien << napis; 
+    while (strumien >> znak)
+    {
+        if (!isdigit(znak))
+        {
+            break;
+            return false;
+        }
+    }
+    return true;
 }

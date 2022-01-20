@@ -1,5 +1,5 @@
 /** @file */
-#pragma once
+
 #ifndef STRUKTURY_H
 #define STRUKTURY_H
 
