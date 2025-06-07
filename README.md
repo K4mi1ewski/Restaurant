@@ -7,3 +7,9 @@ Po zakończeniu składania zamówienia, program tworzy plik tekstowy o nazwie S(
 Program pobiera listę dostępnych potraw z pliku tekstowego "baza.txt".
 
 Uruchomienie programu z linii poleceń: (ścieżka do programu) -s (numer stolika) (plik tekstowy z bazą potraw)
+
+Aby skompilować program i uruchomić program:
+1. mkdir build && cd build
+2. cmake ..
+3. make
+4. ./restaurant -s <nr stolika> <../baza.txt>
