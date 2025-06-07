@@ -12,4 +12,4 @@ Aby skompilować program i uruchomić program:
 1. mkdir build && cd build
 2. cmake ..
 3. make
-4. ./restaurant -s <nr stolika> <../baza.txt>
+4. ./restaurant -s [nr stolika] ../baza.txt
