@@ -9,7 +9,6 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
-#include <windows.h>
 #include <cstring>
 #include "struktury.h"
 using namespace std;

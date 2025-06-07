@@ -7,7 +7,8 @@ int main(int argc, char* argv[])
 {
     if (argc != 4 || strcmp(argv[1], "-s") != 0 || czy_liczba(argv[2]) == false)
     {
-        cerr << "NIEPRAWIDLOWE PARAMETRY! POPRAWNE WYWOLANIE: " << argv[0] << " -s (numer stolika) (nazwa pliku tekstowego) ";
+        cerr << "NIEPRAWIDLOWE PARAMETRY! POPRAWNE WYWOLANIE: " << argv[0]
+             << " -s (numer stolika) (nazwa pliku tekstowego) " << endl;
         return 0;
     }
     int numer_stolika = stoi(argv[2]);
@@ -32,12 +33,14 @@ int main(int argc, char* argv[])
         cin >> wybor_kat;
         if (czy_liczba(wybor_kat.c_str()) == true)
         {
-            N = stoi(wybor_kat) - 1;
-            if (stoi(wybor_kat) == 0)
+            size_t T = stoi(wybor_kat);
+            N = T - 1;
+            
+            if (T == 0)
             {
                 break;
             }
-            size_t T = stoi(wybor_kat);
+            
             if (T <= kategorie.size())
             {
                 do
@@ -66,7 +69,9 @@ int main(int argc, char* argv[])
                             const int dwa = 2; const int odstep = 7;
                             size_t rozmiar_nazwy = strlen(el.nazwa.c_str());
                             size_t przesuniecie = maxi_rozmiar_nazwy - rozmiar_nazwy + odstep + max_cena_dlugosc;
-                            cout << setw(dwa) << el.id << " " << el.nazwa << " " << setprecision(dwa) << showpoint << fixed << setw(przesuniecie) << el.cena << "; " << el.opis << endl;
+                            cout << setw(dwa) << el.id << " " << el.nazwa << " " 
+                                 << setprecision(dwa) << showpoint << fixed 
+                                 << setw(przesuniecie) << el.cena << "; " << el.opis << endl;
                         }
                     }
                     cout << endl << "0  Powrot" << endl;
@@ -106,7 +111,8 @@ int main(int argc, char* argv[])
             }
             else
             {
-                cerr << "NIE MA TAKIEJ KATEGORII, WYBIERZ NUMER OD 1 DO " << kategorie.size() << " LUB 0 ABY ABY ZAKONCZYC; MOZESZ WYCZYSCIC ZAMOWIENIE WPROWADZAJAC 'R' ";
+                cerr << "NIE MA TAKIEJ KATEGORII, WYBIERZ NUMER OD 1 DO "
+                     << kategorie.size() << " LUB 0 ABY ABY ZAKONCZYC; MOZESZ WYCZYSCIC ZAMOWIENIE WPROWADZAJAC 'R' ";
                 cin.clear(); getchar(); getchar();
             }
         }
@@ -116,9 +122,11 @@ int main(int argc, char* argv[])
         }
         else
         {
-            cerr << "NIEPOPRAWNY ZNAK! WYBIERZ NUMER OD 1 DO " << kategorie.size() << " LUB 0 ABY ZAKONCZYC; MOZESZ WYCZYSCIC ZAMOWIENIE WPROWADZAJAC 'R' ";
+            cerr << "NIEPOPRAWNY ZNAK! WYBIERZ NUMER OD 1 DO " << kategorie.size() 
+                 << " LUB 0 ABY ZAKONCZYC; MOZESZ WYCZYSCIC ZAMOWIENIE WPROWADZAJAC 'R' ";
             cin.clear(); getchar(); getchar();
         }
+        
         system("cls");
     } while (wybor_kat != "0");
 

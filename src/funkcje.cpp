@@ -62,7 +62,7 @@ void podsumuj(vector <danie> zamowienie, const int& nr_stolika)
         nazwa_pliku.push_back(znak);
     ss.str(""); ss.clear();
 
-    nazwa_pliku.push_back('.');   nazwa_pliku.push_back('t');  nazwa_pliku.push_back('x');  nazwa_pliku.push_back('t');
+    nazwa_pliku += ".txt";
     double suma = 0;
     for (auto el : zamowienie)
         suma += el.cena;
@@ -95,6 +95,7 @@ void podsumuj(vector <danie> zamowienie, const int& nr_stolika)
         }
         plik << endl;
         plik << setprecision(dwa) << fixed << showpoint << suma;
+        plik << endl;
     }
     plik.close();
 }
